@@ -35,6 +35,29 @@ function createTweetElement(tweet) {
     duration = `${days} days ago`;
   }
 
+  // let tweetHTML =
+//     `<article class = "art icons">
+//        <header class = "head">
+//        <span class = "group1">
+//        <img class="pic" src="${tweet.user.avatars.small}" alt="Mountain View">
+//         <h1 class ="name">${tweet.user.name}</h1>
+//         </span>
+//         <span class = "group2">
+//         <a class = "user-name">${tweet.user.handle}</a>
+//         </span>
+//         </header>
+//         <section class="message">
+//         <h3>${tweet.content.text}</h3>
+//         </section>
+//        <footer class = "foot">
+//          <h6 class = "time">${duration}</h6>
+//              <span class = "three">
+// <img class="hot" src="./images/sharing.png">
+// <img class="hot" src="./images/laptop.png">
+// <img class="hot" src="./images/like.png">
+//                </span>
+//         </footer>
+//      </article>`
 
   let tweetHTML = _.template( `<article class = "art icons">
          <header class = "head">
@@ -63,10 +86,9 @@ function createTweetElement(tweet) {
 
 $(document).ready(function() {
 
+
 $('#container input').on('click', function() {
   alert('Tweet, Tweet!');
-  event.stopPropagation();
-
 });
   $('button').click(function(){
       $('.new-tweet').slideToggle('slow');
@@ -76,9 +98,9 @@ $('#container input').on('click', function() {
     }, 'slow');
 
   });
-$('#container input').on('click', function() {
-  $("form").reset();
-});
+
+
+
     // Animation complete.
 
   // load intital tweets
@@ -103,16 +125,17 @@ fetchTweets()
 // then on user submit with form
 // make another tweets request
 
-function isTweetEmpty(data) {
+function tweetIsEmpty(data) {
   return data === null || data === ""
 }
 
-function isTweetToLong(data) {
+function tweetIsTooLong(data) {
 return data.length > 140
 }
 
 // post tweet
  $("form").on("submit", function (ev) {
+
     ev.preventDefault();
 
     let text = $('#tweet-text').val()
@@ -122,15 +145,14 @@ return data.length > 140
 
     console.log('...', data)
 
-    if (isTweetEmpty(text)) {
+    if (tweetIsEmpty(text)) {
       alert('enter a tweet!')
-       event.stopPropagation();
       return
-    } else if (isTweetToLong(text)) {
+    } else if (tweetIsTooLong(text)) {
         alert('tweet to long!')
-         event.stopPropagation();
       return
     } else {
+
       $.ajax({
         url: '/tweets/',
         method: 'POST',
@@ -138,10 +160,10 @@ return data.length > 140
 
         success: fetchTweets
       });
-      $('#tweet-text').val("")
-
     }
+
   });
+
 });
 
 

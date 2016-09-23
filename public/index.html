@@ -6,28 +6,73 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,700,700i" rel="stylesheet">
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
   </head>
 
   <body>
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png" width="80px" height="80px">
+      <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
+      <button>Compose</button>
     </nav>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
-    </main>
+    <main id="container">
+      <section class="new-tweet">
+        <h2>Compose Tweet</h2>
 
-  </body>
+           <form>
+              <textarea id="tweet-text" name="text" placeholder="What are you humming about?"></textarea>
+                <input class="send" type="submit" value="Tweet">
+                <span id="counter">140</span>
+          </form>
+         </section>
+
+         <section id = "tweetsContainer" class = "oldnews">
+
+            <article class = "art icons">
+             <header class = "head">
+             <span class = "group1">
+             <img class="pic" src="./images/img.jpeg" alt="Mountain View">
+              <h1 class ="name">Bill Fields</h1>
+              </span>
+              <span class = "group2">
+              <a class = "user-name">@MrField</a>
+              </span>
+              </header>
+              <section class="message">
+              <h3>Little tweet here</h3>
+              </section>
+             <footer class = "foot">
+               <h6 class = "time">10 days ago</h6>
+               <h5>featured</h5>
+               <span class = "three">
+<img class="hot" src="./images/sharing.png">
+<img class="hot" src="./images/laptop.png">
+<img class="hot" src="./images/like.png">
+               </span>
+              </footer>
+           </article>
+
+          </section>
+
+      </main>
+  <script src = "/scripts/composer-char-counter.js"></script>
+<div>Icons made by <a href="http://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</body>
 </html>

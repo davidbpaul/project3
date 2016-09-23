@@ -1,0 +1,32 @@
+.new-tweet{
+  background-color:lightgrey;
+  width:87%;
+  height:150  px;
+ margin:auto;
+ border-radius: 10px;
+    border: 2px solid darkgray;
+    padding: 20px;
+}
+
+h2{
+  border-bottom: 2px solid darkgray;
+}
+textarea{
+  width:98%;
+  margin:auto;
+  padding:5px;
+}
+
+.send{
+  float:left;
+
+}
+#counter{
+float:right;
+
+}
+.hilighted {
+color: red;
+float:right;
+
+   }
