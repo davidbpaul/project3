@@ -12,13 +12,12 @@ function renderTweets(tweets) {
 }
 
 function createTweetElement(tweet) {
-  let dtoday = (new Date()).getTime();
-  let post =(tweet.created_at)
-  let date = ((dtoday-post)/1000);
+  const dtoday = (new Date()).getTime();
+  const post =tweet.created_at
+  const date = (dtoday-post)/1000;
 
-  day = Math.floor()
-  var hours = Math.floor(date / 60 / 60);
-  var duration = hours
+  const hours = Math.floor(date / 60 / 60);
+  let duration = hours
 
   console.log(duration)
 
@@ -31,12 +30,12 @@ function createTweetElement(tweet) {
   }
 
   else if (hours > 24){
-    let days = Math.floor(hours / 24);
+    const days = Math.floor(hours / 24);
     duration = `${days} days ago`;
   }
 
 
-  let tweetHTML = _.template( `<article class = "art icons">
+  const tweetHTML = _.template( `<article class = "art icons">
          <header class = "head">
          <span class = "group1">
          <img class="pic" src="<%= tweet.user.avatars.small %>" alt="Mountain View">
@@ -52,83 +51,69 @@ function createTweetElement(tweet) {
          <footer class = "foot">
            <h6 class = "time"><%= duration %></h6>
                <span class = "three">
-  <img class="hot" src="./images/sharing.png">
-  <img class="hot" src="./images/laptop.png">
-  <img class="hot" src="./images/like.png">
+          <img class="hot" src="./images/sharing.png">
+          <img class="hot" src="./images/laptop.png">
+          <img class="hot" src="./images/like.png">
                  </span>
           </footer>
        </article>`);
-    return tweetHTML({tweet: tweet, duration: duration})
+  return tweetHTML({tweet: tweet, duration: duration})
 }
 
 $(document).ready(function() {
 
-$('#container input').on('click', function() {
-  alert('Tweet, Tweet!');
-  event.stopPropagation();
+  $('#container input').on('click', function() {
+      alert('Tweet, Tweet!');
+      event.stopPropagation();
 
-});
+  });
   $('button').click(function(){
       $('.new-tweet').slideToggle('slow');
-       $("#tweet-text").focus();
-    $('html, body').animate({
+      $("#tweet-text").focus();
+      $('html, body').animate({
         scrollTop: 0
     }, 'slow');
 
   });
-$('#container input').on('click', function() {
-  $("form").reset();
-});
-    // Animation complete.
 
   // load intital tweets
   function fetchTweets(){
-
-
     $.ajax({
       url: '/tweets/',
       method: 'GET',
       success: function (data) {
         renderTweets(data);
 
-        // $(".icons").hover(function(){
-        // $(this).toogleClass(hov);
-        // })
       }
     })
   }
 
-fetchTweets()
+  fetchTweets()
 
-// then on user submit with form
-// make another tweets request
+  // then on user submit with form
+  // make another tweets request
 
-function isTweetEmpty(data) {
-  return data === null || data === ""
-}
+  function isTweetEmpty(data) {
+    return data === null || data === ""
+  }
 
-function isTweetToLong(data) {
-return data.length > 140
-}
+  function isTweetToLong(data) {
+  return data.length > 140
+  }
 
 // post tweet
  $("form").on("submit", function (ev) {
     ev.preventDefault();
-
-    let text = $('#tweet-text').val()
+    const text = $('#tweet-text').val()
     console.log(text);
-
-    let data = $(this).serialize()
-
-    console.log('...', data)
-
+    const data = $(this).serialize()
     if (isTweetEmpty(text)) {
       alert('enter a tweet!')
-       event.stopPropagation();
+      event.stopPropagation();
       return
     } else if (isTweetToLong(text)) {
-        alert('tweet to long!')
-         event.stopPropagation();
+      alert('tweet to long!')
+      event.stopPropagation();
       return
     } else {
       $.ajax({
